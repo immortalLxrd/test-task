@@ -1,0 +1,14 @@
+@import "src/styles/variables";
+
+.radio {
+  height: 16px;
+  width: 16px;
+  border: 1px solid $primary-color;
+  border-radius: 50%;
+  position: absolute;
+  left: 12px;
+
+  &_active {
+    border-width: 5px;
+  }
+}

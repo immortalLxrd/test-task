@@ -1,0 +1,65 @@
+@import "variables";
+
+.App {
+  height: 100vh;
+  background-color: $bg-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  width: 606px;
+  background-color: $white-color;
+  box-shadow: 0 4px 30px rgba(4, 20, 32, 0.1);
+  border-radius: 4px;
+
+  &__title {
+    color: $font-color;
+  }
+
+  &__icon {
+    object-fit: none;
+  }
+
+  &__heading {
+    display: flex;
+    padding: 12px 25px 12px 12px;
+    height: 48px;
+    border-bottom: 1px solid $blue-color;
+  }
+
+  &__content {
+    padding: 10px 20px 10px 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 22px;
+    row-gap: 15px;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    grid-column: 1/3;
+  }
+}
+
+.plus-icon {
+  height: 24px;
+  width: 24px;
+  padding: 5px;
+  margin-right: 12px;
+}
+
+.close-icon {
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  margin-left: auto;
+}
+
+.label-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}

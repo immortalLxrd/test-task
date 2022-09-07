@@ -1,0 +1,12 @@
+@import "src/styles/variables";
+
+.button {;
+  padding: 10px 16px;
+  font-weight: 500;
+  width: 190px;
+  height: 40px;
+  border: 1px solid $primary-color;
+  border-radius: 4px;
+  background-color: transparent;
+  color: $primary-color;
+}
