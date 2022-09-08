@@ -1,6 +1,6 @@
 
 
-### To start this project, you need to run:
+### To start this project, you need to:
 
 Create .env file with variables `REACT_APP_API_URL` and `REACT_APP_AUTH_TOKEN` in the root directory.
 
