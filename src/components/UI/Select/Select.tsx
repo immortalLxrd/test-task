@@ -9,16 +9,18 @@ type DropdownProps = {
 	initialValue: string,
 	radio?: boolean,
 	name?: string,
-	onChange?: any,
+	onChange?: Function,
+	onChangeValue?: Function,
 	children: Array<React.ReactNode>,
 };
 
 const Select: React.FC<DropdownProps> = ({
-											 onChange = () => null,
 											 initialValue,
 											 radio,
 											 children,
 											 name,
+											 onChange,
+											 onChangeValue,
 											 ...props
 										 }) => {
 	const [value, setValue] = useState({value: null, content: initialValue});
@@ -26,7 +28,8 @@ const Select: React.FC<DropdownProps> = ({
 
 	const handleClick = (item: any) => {
 		setValue({value: item.props.value, content: item.props.children});
-		onChange(name, item.props.value);
+		!!onChange && onChange([name, item.props.value]);
+		!!onChangeValue && onChangeValue(item.props.value);
 	};
 
 	return (

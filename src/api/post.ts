@@ -2,11 +2,11 @@ import {IUserForm} from "../types/types";
 import axios from "axios";
 
 
-const URL: string | undefined = process.env["API_URL"];
-const TOKEN: string | undefined = process.env["AUTH_TOKEN"];
+const URL: string | undefined = process.env["REACT_APP_API_URL"];
+const TOKEN: string | undefined = process.env["REACT_APP_AUTH_TOKEN"];
 
 
-export default async function addUser(userForm: IUserForm) {
+const addUser = async (userForm: IUserForm): Promise<void> => {
 	if (URL && TOKEN) {
 		try {
 			const {data} = await axios.post<IUserForm>(
@@ -19,15 +19,17 @@ export default async function addUser(userForm: IUserForm) {
 				},
 			);
 			console.log(JSON.stringify(data, null, 4));
-			return data;
-		} catch (error) {
-			if (axios.isAxiosError(error)) {
-				console.log('error message: ', error.message);
-				return error.message;
+		} catch (err) {
+			if (axios.isAxiosError(err)) {
+				console.log('error message: ', err.message);
 			} else {
-				console.log('unexpected error: ', error);
-				return 'An unexpected error occurred';
+				console.log('unexpected error: ', err);
 			}
 		}
+	} else {
+		console.log("Please add .env file with fields REACT_APP_API_URL and REACT_APP_AUTH_TOKEN on the project root");
 	}
-}
+};
+
+
+export default addUser;
