@@ -9,39 +9,35 @@
   border-radius: 4px;
   font-weight: 300;
   cursor: text;
-
-  //&:focus {
-  //
-  //  box-shadow: 0 8px 16px -4px rgba(24, 39, 75, 0.1), 0px 12px 32px -4px rgba(24, 39, 75, 0.1);
-  //}
-
-  &::placeholder {
-    color: $placeholder-color;
-  }
 }
 
 .input {
   font-style: italic;
   padding: 8px 12px;
-}
 
-.tel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  &::placeholder {
+    color: $placeholder-color;
+  }
 
-  cursor: default;
 
-  position: relative;
-  top: -1px;
-  left: -1px;
+  &__tel {
+    width: 46px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 
-  border-radius: 4px 0 0 4px;
-  border: 1px solid $blue1-color;
-  width: 46px;
-  height: 40px;
-  background-color: $blue-color;
+    cursor: default;
+
+    position: relative;
+    top: -1px;
+    left: -1px;
+
+    border-radius: 4px 0 0 4px;
+    border: 1px solid $blue1-color;
+    background-color: $blue-color;
+  }
 }
 
 .flag_icon {

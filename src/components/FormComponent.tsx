@@ -1,25 +1,16 @@
 import React, {useReducer} from 'react';
-import Dropdown from "./UI/Dropdown/Dropdown";
+import Select from "./UI/Select/Select";
 import plusIcon from "../assets/icons/plus.svg"
 import closeIcon from "../assets/icons/close.svg"
 import Input from "./UI/Input/Input";
 import Button from "./UI/Button/Button";
-import DropdownItem from "./UI/Dropdown/DropdownItem";
+import SelectItem from "./UI/Select/SelectItem";
 import {formActions, formReducer} from "../reducers/formReducer";
+import {IUserForm} from "../types/types";
+
 
 type FormComponentProps = {
-	action: (args: any) => void
-};
-
-interface IUserForm {
-	userPhoneNumber: string | null,
-	userName: string | null,
-	lastName: string | null,
-	email: string | null,
-	workplace: string | null,
-	lang: string | null,
-	profession: string | null,
-	idRole: string
+	action: Function
 };
 
 const userForm: IUserForm = {
@@ -33,13 +24,21 @@ const userForm: IUserForm = {
 	idRole: "de9b62b2-1ba9-4393-b191-efb19e05b22e"
 };
 
+
 const FormComponent: React.FC<FormComponentProps> = ({action}) => {
 	const [values, dispatch] = useReducer(formReducer, userForm);
 
 	const handleChange = (e: any) => {
 		dispatch({
-			type: formActions.CHANGE_INPUT,
+			type: formActions.CHANGE,
 			payload: {name: e.target.name, value: e.target.value}
+		});
+	};
+
+	const handleDropdownChange = (name: string, value: string | number) => {
+		dispatch({
+			type: formActions.CHANGE,
+			payload: {name: name, value: value}
 		});
 	};
 
@@ -64,58 +63,98 @@ const FormComponent: React.FC<FormComponentProps> = ({action}) => {
 			>
 				<label>
 					<p className="label-text">Ім’я</p>
-					<Input onChange={handleChange} placeholder="Марина" type="text" name="userName"/>
+					<Input
+						name="userName"
+						onChange={handleChange}
+						placeholder="Марина"
+						type="text"
+						required
+					/>
 				</label>
 				<label>
 					<p className="label-text">Прізвище</p>
-					<Input placeholder="Коноваленко" type="text" name="lastName"/>
+					<Input
+						name="lastName"
+						onChange={handleChange}
+						placeholder="Коноваленко"
+						type="text"
+						required
+					/>
 				</label>
 				<label>
 					<p className="label-text">Телефон</p>
-					<Input tel placeholder="1 (999) 999-9999" type="text" name="userPhoneNumber"/>
+					<Input
+						name="userPhoneNumber"
+						onChange={handleChange}
+						placeholder="1 (999) 999-9999"
+						type="number"
+						tel
+						required
+					/>
 				</label>
 				<label>
 					<p className="label-text">Email</p>
-					<Input placeholder="example.com" type="text" name="email"/>
+					<Input
+						name="email"
+						onChange={handleChange}
+						placeholder="example.com"
+						type="text"
+						required
+					/>
 				</label>
 				<label htmlFor="">
 					<p className="label-text">Група користувачів</p>
-					<Dropdown initialValue="Оберіть групу">
-						<DropdownItem value={1}>1</DropdownItem>
-						<DropdownItem value={2}>2</DropdownItem>
-						<DropdownItem value={3}>3</DropdownItem>
-						<DropdownItem value={4}>4</DropdownItem>
-					</Dropdown>
+					<Select
+						name="workplace"
+						onChange={handleDropdownChange}
+						initialValue="Оберіть групу"
+					>
+						<SelectItem value={1}>1</SelectItem>
+						<SelectItem value={2}>2</SelectItem>
+						<SelectItem value={3}>3</SelectItem>
+						<SelectItem value={4}>4</SelectItem>
+					</Select>
 				</label>
 				<label htmlFor="">
 					<p className="label-text">Мова</p>
-					<Dropdown initialValue="Оберіть мову" radio name="lang">
-						<DropdownItem value={'EN'}>Англійська</DropdownItem>
-						<DropdownItem value={'UA'}>Українська</DropdownItem>
-						<DropdownItem value={'DE'}>Німецька</DropdownItem>
-						<DropdownItem value={'FR'}>Французька</DropdownItem>
-					</Dropdown>
+					<Select
+						name="lang"
+						onChange={handleDropdownChange}
+						initialValue="Оберіть мову"
+						radio
+					>
+						<SelectItem value={'EN'}>Англійська</SelectItem>
+						<SelectItem value={'UA'}>Українська</SelectItem>
+						<SelectItem value={'DE'}>Німецька</SelectItem>
+						<SelectItem value={'FR'}>Французька</SelectItem>
+					</Select>
 				</label>
 				<label htmlFor="">
 					<p className="label-text">Додати нове поле</p>
-					<Dropdown initialValue="Оберіть поле">
-						<DropdownItem value={1}>Місце роботи</DropdownItem>
-						<DropdownItem value={2}>Професія</DropdownItem>
-						<DropdownItem value={3}>Вік</DropdownItem>
-						<DropdownItem value={4}>Дата народження</DropdownItem>
-					</Dropdown>
+					<Select initialValue="Оберіть поле">
+						<SelectItem value={"work"}>Місце роботи</SelectItem>
+						<SelectItem value={"profession"}>Професія</SelectItem>
+						<SelectItem value={"age"}>Вік</SelectItem>
+						<SelectItem value={"birthdate"}>Дата народження</SelectItem>
+					</Select>
 				</label>
 				<label>
 					<p className="label-text">Значення поля</p>
-					<Input placeholder="Введіть значення" type="text" name="profession"/>
+					<Input
+						name="profession"
+						onChange={handleChange}
+						placeholder="Введіть значення"
+						type="text"
+						required
+					/>
 				</label>
 				<div className="form__bottom">
-					<a
-						href="#"
+					<div
+						className="add-btn"
 						onClick={e => e.preventDefault()}
 					>
 						Додати поле
-					</a>
+					</div>
 					<Button type="submit">
 						Додати користувача
 					</Button>
@@ -124,5 +163,6 @@ const FormComponent: React.FC<FormComponentProps> = ({action}) => {
 		</div>
 	);
 };
+
 
 export default FormComponent;

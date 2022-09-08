@@ -1,11 +1,12 @@
 import React from 'react';
 
+
 type DropdownItemProps = {
 	value: string | number,
 	children: React.ReactNode | string
 };
 
-const DropdownItem: React.FC<DropdownItemProps> = ({value, children}) => {
+const SelectItem: React.FC<DropdownItemProps> = ({value, children}) => {
 	return (
 		<option value={value}>
 			{children}
@@ -13,4 +14,5 @@ const DropdownItem: React.FC<DropdownItemProps> = ({value, children}) => {
 	);
 };
 
-export default DropdownItem;
+
+export default SelectItem;

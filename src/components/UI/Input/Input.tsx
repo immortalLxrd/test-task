@@ -8,7 +8,7 @@ const Input: React.FC<any> = ({tel, ...props}) => {
 	return (
 		<div className={cl.wrapper}>
 			{tel && (
-				<div className={cl.tel}>
+				<div className={cl.input__tel}>
 					<img className={cl.flag_icon} src={flagIcon} alt=""/>
 					<img className={cl.arrow_icon} src={arrowIcon} alt=""/>
 				</div>

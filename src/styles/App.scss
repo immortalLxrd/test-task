@@ -63,3 +63,21 @@
   font-size: 12px;
   font-weight: 500;
 }
+
+.ellipse {
+  position: absolute;
+  left: 25px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #DC3545;
+  box-shadow: 0 4px 5px rgba(6, 43, 12, 0.19);
+}
+
+.add-btn {
+  line-height: 1.702;
+  color: $primary-color;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}

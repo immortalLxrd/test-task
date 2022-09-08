@@ -1,10 +1,10 @@
 export const formActions = {
-	CHANGE_INPUT: "CHANGE_INPUT"
+	CHANGE: "CHANGE"
 };
 
 export const formReducer = (state: Object, action: any) => {
 	switch (action.type) {
-		case (formActions.CHANGE_INPUT):
+		case (formActions.CHANGE):
 			return {
 				...state,
 				[action.payload.name]: action.payload.value
